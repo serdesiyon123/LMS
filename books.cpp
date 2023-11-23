@@ -4,110 +4,96 @@
 
 #include "books.h"
 #include <fstream>
-#include <cstring>
+#include <cstdio>
+#include <chrono>
+#include <ctime>
 
-const string &Books::getTakenDate() const {
-    return takenDate;
-}
-
-void Books::setTakenDate(const string &takenDate) {
-    Books::takenDate = takenDate;
-}
-
-const string &Books::getReturnDate() const {
-    return returnDate;
-}
-
-void Books::setReturnDate(const string &returnDate) {
-    Books::returnDate = returnDate;
-}
 
 void Books::setName(const string &name) {
 
     Books::name = name;
 }
 
+
 string & Books::getName() {
-
-
     ifstream store;
-
     store.open("store.txt");
+    ifstream rented;
+    rented.open("rented.txt");
 
     if(store.is_open()){
         while(getline(store,line)){
             if(name == line){
-        cout << "got it";
-//        add();
-        remove();
+                update();
+              cout << "The Book have to be returned on ";  returnDate();
+                return name;
             }
-            else{
-                ifstream rented;
-                rented.open("rented.txt");
-                if(rented.is_open()){
-                    while(getline(rented,line)){
-                        if(name == line){
-                            cout << "rented";
-                        }
-                        break;
-                    }
-                }
+        }
+    } else {
+        cout << "store.txt file is not open";
+    }
+
+    if(rented.is_open()){
+        while(getline(rented,line)){
+            if(name == line){
+                cout << "Rented for now it will be return on ";
+                returnDate();
+                return name;
 
             }
         }
-
-
-    }
-    else{
-cout << "file is not open";
+    } else {
+        cout << "rented.txt file is not open";
     }
 
     return name;
 }
 
+void Books::update() {
+    ifstream move;
+    ofstream temp;
+    ofstream rented;
 
+    string line;
+    move.open("store.txt");
+    temp.open("temp.txt");
+    rented.open("rented.txt", ios::app);
 
-void Books::add() {
-    ifstream add;
-    ofstream writeto;
-
-    add.open("store.txt");
-    writeto.open("rented.txt");
-
-    while(getline(add,line)){
+    while(getline(move,line)){
+        if(name != line){
+            temp << line << '\n';
+        }
         if(name == line){
-            writeto << line << '\n';
+            rented << line << '\n';
         }
     }
 
+    move.close();
+    temp.close();
+    rented.close();
+    ::remove("store.txt");
+    rename("temp.txt","store.txt");
 }
 
-void Books::update() {
+int Books::takenDate() {
+
+    auto today = time(0);
+    string Today = ctime(&today);
+    string strToday = Today.substr(0,10);
+
+    return 0;
 }
 
-void Books::remove() {
-  ifstream move;
-  ofstream temp;
+int Books::returnDate() {
 
-  move.open("store.txt");
-  temp.open("temp.txt");
+auto weekLater = time(0) + 604800;
+string strDate =  ctime(&weekLater);
 
- while(getline(move,line)){
+string date = strDate.substr(0,10);
+cout <<date;
 
-     if(name != line){
-
-         temp << line << '\n';
-     }
- }
-move.close();
- temp.close();
-
-
- ::remove("store.txt");
- rename("temp.txt","store.txt");
-
+    return 0;
 }
-
 
 
 
