@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/PC/Documents/Code/Projects/LMS/build",
+  "command": "C:\\MinGW\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\LMS.dir\\main.cpp.obj -c C:\\Users\\PC\\Documents\\Code\\Projects\\LMS\\main.cpp",
+  "file": "C:/Users/PC/Documents/Code/Projects/LMS/main.cpp",
+  "output": "CMakeFiles/LMS.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/PC/Documents/Code/Projects/LMS/build",
+  "command": "C:\\MinGW\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\LMS.dir\\books.cpp.obj -c C:\\Users\\PC\\Documents\\Code\\Projects\\LMS\\books.cpp",
+  "file": "C:/Users/PC/Documents/Code/Projects/LMS/books.cpp",
+  "output": "CMakeFiles/LMS.dir/books.cpp.obj"
+}
+]

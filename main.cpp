@@ -10,7 +10,7 @@ int main(){
 
     Books book;
 
-    book.setName("hellow");
+    book.setName("gone girl");
 
     book.getName();
 

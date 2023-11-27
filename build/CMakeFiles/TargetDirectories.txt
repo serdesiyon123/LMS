@@ -1,0 +1,3 @@
+C:/Users/PC/Documents/Code/Projects/LMS/build/CMakeFiles/LMS.dir
+C:/Users/PC/Documents/Code/Projects/LMS/build/CMakeFiles/edit_cache.dir
+C:/Users/PC/Documents/Code/Projects/LMS/build/CMakeFiles/rebuild_cache.dir

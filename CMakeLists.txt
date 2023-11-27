@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(LMS
         main.cpp
         books.cpp
-        books.h)
+        books.h
+        user.cpp
+        user.h)
