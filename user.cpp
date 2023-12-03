@@ -35,7 +35,7 @@ void signUp::collectInfo() {
     cin >> username;
     cout << enterPassword;
     cin >> password;
-
+assignId();
     ofstream writeFile;
     writeFile.open("logininfo.txt", ios::app);
 
@@ -60,27 +60,25 @@ this->ID = ID;
 
 void signUp::assignId() {
 
-    ifstream readFile("logininfo.txt");
-    int maxId = 0;
+    fstream readFile;
+    readFile.open("logininfo.txt");
 
-    string line;
-    while (getline(readFile, line)) {
-        if (line.find(id) != string::npos) {
-            // Extract the ID part from the line
-            int extractedId;
-            if (sscanf(line.c_str(), "%*[^0-9]%d", &extractedId) == 1) {
-                // Update maxId if the extracted ID is greater
-                if (extractedId > maxId) {
-                    maxId = extractedId;
-                }
-            }
-        }
+
+    string idPrefix = "ID:";
+    string line,lastLine;
+
+    while(getline(readFile,line)){
+       lastLine = line;
+
     }
 
-    // Increment the maxId to get the next available ID
-    ID = maxId + 1;
+    if(lastLine.substr(0,3) == idPrefix) {
 
-    // Close the file
+        ID = stoi(line.substr(3,5));
+        ID++;
+
+    }
+
     readFile.close();
 }
 
@@ -136,10 +134,6 @@ int Login::signIn() {
 
 
 
-
-
-
-
     readFile.close();
 }
 
@@ -164,6 +158,9 @@ void Login::rent() {
     cout << "Enter book name you want to borrow: ";
     cin >> bookName;
 
+    ofstream registerTakenBooks;
+    registerTakenBooks.open("RentedBooks.txt", ios::app);
+
     while(getline(readStore,line)){
         if ((bookName == line)) {
             time_t currentTime = time(nullptr) ;
@@ -172,9 +169,21 @@ void Login::rent() {
           string  inaWeekString = ctime(&inaWeek);
             cout << "You have taken the book at "<< currentTimeString.substr(0,10)<< "\n";
             cout << "You have to return it on "<< inaWeekString.substr(0,10);
+registerTakenBooks << bookName <<"is taken by" << "\n";
 
         }
 
     }
+
+}
+
+void Login::takeId() {
+
+    string line,secondLine;
+
+    ifstream loginInfo;
+
+
+
 
 }
