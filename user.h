@@ -35,7 +35,7 @@ public:
 
 private:
     string name, username, email, password;
-    int ID = 0;
+    int ID = 0000;
 };
 
 
@@ -46,6 +46,11 @@ public:
     const string &getUsername() const;
     const string &getPassword1() const;
     int signIn();
+    void Return();
+    static void rent();
+
+
+
     string idenName = "Name:";
     string idenUser = "Username:";
     string idenPass = "Password:";
@@ -54,6 +59,7 @@ public:
     string enterPassword = "Enter your password: ";
 private:
     string username,password;
+
 };
 
 #endif //LMS_USER_H
