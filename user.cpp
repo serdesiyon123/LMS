@@ -42,9 +42,9 @@ assignId();
 
 
     writeFile << '\n' << idenName << name << "\n";
+    writeFile << idenEmail << email << "\n";
     writeFile << idenUser << username << "\n";
     writeFile << idenPass << password << "\n";
-    writeFile << idenEmail << email << "\n";
     writeFile << id << ID;
 
 
@@ -92,7 +92,7 @@ const string &Login::getUsername() const {
 const string &Login::getPassword1() const {
     return password;
 }
-
+string idHolder;
 
 int Login::signIn() {
     cout << enterUserName;
@@ -111,13 +111,15 @@ int Login::signIn() {
         if (searchUser == line) {
             if (getline(readFile, line) && searchPass == line) {
                 cout << "Logged in successfully\n";
+                 idHolder =searchUser;
+
+                cout << "1: Return book: " << "\n" << "2: Rent a book: ";
                 int x;
                 cin >> x;
 
-                cout << "1: Return book: " << "\n" << "2: Rent a book: ";
 
                 if(x == 1 ){
-
+                    Return();
                 }
                 else if(x ==2 ){
 
@@ -135,9 +137,20 @@ int Login::signIn() {
 
 
     readFile.close();
+    return 0;
 }
 
 void Login::Return() {
+
+cout << "Enter book name you want to return: ";
+string bookName;
+cin >> bookName;
+
+ofstream returnBooks;
+
+returnBooks.open("ReturnedBooks.txt", ios::app);
+
+returnBooks << bookName << " is returned by " << idHolder << "\n";
 
 }
 
@@ -169,7 +182,7 @@ void Login::rent() {
           string  inaWeekString = ctime(&inaWeek);
             cout << "You have taken the book at "<< currentTimeString.substr(0,10)<< "\n";
             cout << "You have to return it on "<< inaWeekString.substr(0,10);
-registerTakenBooks << bookName <<"is taken by" << "\n";
+registerTakenBooks << bookName <<" is taken by" << idHolder <<"\n";
 
         }
 

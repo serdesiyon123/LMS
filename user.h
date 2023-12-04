@@ -48,6 +48,7 @@ public:
     int signIn();
     void Return();
     static void rent();
+    void takeId();
 
 
 
